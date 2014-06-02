@@ -1,6 +1,9 @@
 .right{
 	float:right;
 }
+.left{
+	float:left;
+}
 
 %clearfix{
 	&:after{
@@ -8,4 +11,9 @@
 		display:table;
 		clear:both;
 	}
+}
+
+[data-icon]:before {
+	font-family: 'Meteocons';
+	content: attr(data-icon);
 }

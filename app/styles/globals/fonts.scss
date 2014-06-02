@@ -1,14 +1,21 @@
 @include font-face("Abel", 
-    font-files( "fonts/abel-webfont.woff", 
-                "fonts/abel-webfont.ttf", 
-                "fonts/abel-webfont.svg"
+    font-files( "abel-webfont.woff", 
+                "abel-webfont.ttf", 
+                "abel-webfont.svg"
     ), 
-                "fonts/abel-webfont.eot"
+                "abel-webfont.eot"
 );
 @include font-face("Ubuntu", 
-    font-files( "fonts/ubuntu-webfont.woff", 
-                "fonts/ubuntu-webfont.ttf", 
-                "fonts/ubuntu-webfont.svg"
+    font-files( "ubuntu-webfont.woff", 
+                "ubuntu-webfont.ttf", 
+                "ubuntu-webfont.svg"
     ), 
-                "fonts/abel-webfont.eot"
+                "ubuntu-webfont.eot"
+);
+@include font-face("Meteocons", 
+    font-files( "meteocons-webfont.woff", 
+                "meteocons-webfont.ttf", 
+                "meteocons-webfont.svg"
+    ), 
+                "meteocons-webfont.eot"
 );

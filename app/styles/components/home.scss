@@ -1,4 +1,3 @@
-
 #login {
     display: block;
     background: url("../images/background-login.png") no-repeat;
@@ -9,7 +8,7 @@
     #user-picture {
         @include border-radius(100px);
         width: 180px;
-        height:180px;
+        height: 180px;
         border: 5px $purple_dark solid;
         position: absolute;
         bottom: -50px;
@@ -18,29 +17,63 @@
     }
 }
 
-#weather {
+#informations {
     background-color: $purple_light;
     width: 100%;
     height: 90px;
+    padding: 10px;
+    #informations-left {
+        color: $white;
+        font-size: 35px;
+        width:50%;
 
-    padding:10px;
+        span{
+            display: table-cell;
+            vertical-align: bottom;
+            height: 70px;
+        }
+    }
 
-    #time{
-	color:$white;
-	font-size:35px;
-	height:70px;
+    #informations-right {
+        color: $white;
+        font-family:"Ubuntu";
+        width:50%;
+        position:relative;
+        height:70px;
 
-	display: table-cell;
-   	vertical-align: bottom;
-}
+        & > span {
+            display: block;
+            width:100%;
+            position:absolute;
+            right:0;
+
+            text-align:right;
+
+            &#date{
+                bottom:0;
+                font-family:"Ubuntu";
+            }
+
+            &#weather{
+                bottom:20px;
+                font-family: "Ubuntu";
+
+                #weather-icon{
+                    height:2em;
+                    float:right;
+                    font-size:2em;
+                }
+            }
+        }
+    }
 }
 
 #schedule-today-heading {
     margin-left: 15px;
     color: $purple_regular;
     text-transform: uppercase;
+    font-family: "Abel";
 }
-
 
 #schedule-today {
     display: table;
@@ -48,12 +81,11 @@
     td {
         color: $pink;
         font-size: 10pt;
-        text-align:left;
-        padding:15px;
+        font-family: "Abel";
+        text-align: left;
+        padding: 15px;
     }
-    tr:nth-child(2n+1)
-    {
-    	background-color:$purple_tint;
+    tr:nth-child(2n+1) {
+        background-color: $purple_tint;
     }
 }
-
