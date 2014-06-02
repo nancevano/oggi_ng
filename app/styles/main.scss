@@ -1,0 +1,26 @@
+$icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/";
+
+//@import 'bootstrap-sass-official/vendor/assets/stylesheets/bootstrap';
+
+// bower:scss
+//@import "../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap.scss";
+// endbower
+
+//Reset
+@import "libs/reset.scss";
+
+//Font Awesome
+@import "libs/font-awesome";
+
+//Compass
+@import "compass/css3";
+@import "compass/css3/user-interface";
+
+//Globals
+@import "globals/fonts";
+@import "globals/colours";
+
+//Components
+@import "components/generic";
+@import "components/navigation";
+@import "components/home";

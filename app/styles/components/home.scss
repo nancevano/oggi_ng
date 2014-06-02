@@ -1,0 +1,59 @@
+
+#login {
+    display: block;
+    background: url("../images/background-login.png") no-repeat;
+    width: 100%;
+    background-size: cover;
+    height: 200px;
+    position: relative;
+    #user-picture {
+        @include border-radius(100px);
+        width: 180px;
+        height:180px;
+        border: 5px $purple_dark solid;
+        position: absolute;
+        bottom: -50px;
+        left: 50%;
+        margin-left: -90px;
+    }
+}
+
+#weather {
+    background-color: $purple_light;
+    width: 100%;
+    height: 90px;
+
+    padding:10px;
+
+    #time{
+	color:$white;
+	font-size:35px;
+	height:70px;
+
+	display: table-cell;
+   	vertical-align: bottom;
+}
+}
+
+#schedule-today-heading {
+    margin-left: 15px;
+    color: $purple_regular;
+    text-transform: uppercase;
+}
+
+
+#schedule-today {
+    display: table;
+    width: 100%;
+    td {
+        color: $pink;
+        font-size: 10pt;
+        text-align:left;
+        padding:15px;
+    }
+    tr:nth-child(2n+1)
+    {
+    	background-color:$purple_tint;
+    }
+}
+

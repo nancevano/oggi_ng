@@ -1,0 +1,14 @@
+@include font-face("Abel", 
+    font-files( "fonts/abel-webfont.woff", 
+                "fonts/abel-webfont.ttf", 
+                "fonts/abel-webfont.svg"
+    ), 
+                "fonts/abel-webfont.eot"
+);
+@include font-face("Ubuntu", 
+    font-files( "fonts/ubuntu-webfont.woff", 
+                "fonts/ubuntu-webfont.ttf", 
+                "fonts/ubuntu-webfont.svg"
+    ), 
+                "fonts/abel-webfont.eot"
+);
