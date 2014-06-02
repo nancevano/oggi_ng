@@ -18,50 +18,45 @@
 }
 
 #informations {
-    background-color: $purple_light;
+    background-color: $purple_regular;
     width: 100%;
     height: 90px;
     padding: 10px;
     #informations-left {
         color: $white;
         font-size: 35px;
-        width:50%;
-
-        span{
+        width: 50%;
+        span {
             display: table-cell;
             vertical-align: bottom;
             height: 70px;
+            font-family: "Ubuntu";
         }
     }
-
     #informations-right {
         color: $white;
-        font-family:"Ubuntu";
-        width:50%;
-        position:relative;
-        height:70px;
-
+        font-family: "Ubuntu";
+        width: 50%;
+        position: relative;
+        height: 70px;
         & > span {
             display: block;
-            width:100%;
-            position:absolute;
-            right:0;
-
-            text-align:right;
-
-            &#date{
-                bottom:0;
-                font-family:"Ubuntu";
-            }
-
-            &#weather{
-                bottom:20px;
+            width: 100%;
+            position: absolute;
+            right: 0;
+            text-align: right;
+            &#date {
+                bottom: 0;
                 font-family: "Ubuntu";
-
-                #weather-icon{
-                    height:2em;
-                    float:right;
-                    font-size:2em;
+            }
+            &#weather {
+                bottom: 20px;
+                font-family: "Ubuntu";
+                color: $purple_light;
+                #weather-icon {
+                    float: right;
+                    color: $purple_light;
+                    font-size: 2em;
                 }
             }
         }
@@ -70,9 +65,20 @@
 
 #schedule-today-heading {
     margin-left: 15px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-size: 16pt;
     color: $purple_regular;
     text-transform: uppercase;
     font-family: "Abel";
+}
+
+#schedule-right {
+    a {
+        color: $purple_regular;
+        font-size:18pt;
+        margin-top:-7.5px;
+    }
 }
 
 #schedule-today {
@@ -80,7 +86,7 @@
     width: 100%;
     td {
         color: $pink;
-        font-size: 10pt;
+        font-size: 12pt;
         font-family: "Abel";
         text-align: left;
         padding: 15px;
