@@ -71,13 +71,18 @@
     color: $purple_regular;
     text-transform: uppercase;
     font-family: "Abel";
+    width:70%;
+    float:left;
 }
 
 #schedule-right {
     a {
         color: $purple_regular;
         font-size:18pt;
-        margin-top:-7.5px;
+        margin-top:15px;
+        margin-right:42px;
+        width:20%;
+        float:right;
     }
 }
 

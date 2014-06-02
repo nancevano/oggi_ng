@@ -13,6 +13,11 @@ angular
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
+       .when('/month', {
+        templateUrl: 'views/month.html',
+        controller: 'MonthCtrl'
+      })
+
       .otherwise({
         redirectTo: '/'
       });
