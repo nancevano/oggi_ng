@@ -19,9 +19,12 @@ $icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/
 //Globals
 @import "globals/fonts";
 @import "globals/colours";
+@import "globals/mixins";
+
 
 //Components
 @import "components/generic";
 @import "components/navigation";
 @import "components/home";
+@import "components/login";
 @import "components/calendar";

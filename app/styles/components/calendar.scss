@@ -109,7 +109,8 @@
 }
 
 #week-calendar {
-    width: 100%;
+    width: 90%;
+    float:right;
     thead {
         tr {
             th {
@@ -123,13 +124,23 @@
                     width: 100%;
                     color: $purple-regular;
                     font-size: 13pt;
+                    margin-bottom:10px;
                 }
             }
         }
     }
     tbody {
+        tr{
+            &:nth-child(2n+1) {
+                border-top: 1px $purple-regular solid;   
+            }
+            &:nth-child(2n+2) {
+                border-top: 1px $lila solid;   
+            }
+           
+        }
         td {
-            background-color: yellow;
+            background-color: $white;
             width: 14.28%;
             height: 20px;
         }
