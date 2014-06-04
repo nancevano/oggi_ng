@@ -17,6 +17,10 @@ angular
         templateUrl: 'views/month.html',
         controller: 'MonthCtrl'
       })
+        .when('/week', {
+        templateUrl: 'views/week.html',
+        controller: 'WeekCtrl'
+      })
 
       .otherwise({
         redirectTo: '/'
