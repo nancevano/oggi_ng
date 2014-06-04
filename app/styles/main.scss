@@ -3,11 +3,10 @@ $icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/
 //@import 'bootstrap-sass-official/vendor/assets/stylesheets/bootstrap';
 
 // bower:scss
-@import "../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap.scss";
 // endbower
 
-//Reset
-@import "libs/reset.scss";
+//plugins
+@import "libs/reset";
 
 //Font Awesome
 @import "libs/font-awesome";
