@@ -17,6 +17,13 @@
                 &.active {
                     background-color: $purple-dark;
                 }
+              a{
+                text-decoration:none;
+                color:$white;
+                display:block;
+                height:100%;
+                width:100%;
+              }
             }
         }
     }
@@ -45,7 +52,7 @@
     left: 0;
     h1 {
         color: $purple-light;
-        font-size: 20pt;
+        font-size: 18pt;
         text-transform: uppercase;
         font-family: "Ubuntu";
         margin-left: 15px;
@@ -130,19 +137,41 @@
         }
     }
     tbody {
-        tr{
-            &:nth-child(2n+1) {
-                border-top: 1px $purple-regular solid;   
-            }
-            &:nth-child(2n+2) {
-                border-top: 1px $lila solid;   
-            }
-           
-        }
+           tr{
+             width:90%;
+             &:nth-child(2n+1) {
+               border-top: 1px $purple-regular solid;
+             }
+             &:nth-child(2n+2) {
+               border-top: 1px $lila solid;
+             }
+
+           }
         td {
             background-color: $white;
             width: 14.28%;
             height: 20px;
         }
     }
+}
+#day-calendar{
+  width:90%;
+  float:right;
+
+  tbody {
+    tr{
+      &:nth-child(2n+1) {
+        border-top: 1px $purple-regular solid;
+      }
+      &:nth-child(2n+2) {
+        border-top: 1px $lila solid;
+      }
+
+    }
+    td {
+      background-color: $white;
+      width: 14.28%;
+      height: 20px;
+    }
+  }
 }

@@ -25,6 +25,18 @@ var app = angular
                 templateUrl: 'views/month.html',
                 controller: 'MonthCtrl'
             })
+            .when('/week', {
+                templateUrl: 'views/week.html',
+                controller: 'WeekCtrl'
+            })
+            .when('/login', {
+                templateUrl: 'views/login.html',
+                controller: 'LoginCtrl'
+            })
+            .when('/day', {
+                templateUrl: 'views/day.html',
+                controller: 'DayCtrl'
+            })
             .otherwise({
                 redirectTo: '/'
             });

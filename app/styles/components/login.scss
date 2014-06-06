@@ -4,7 +4,7 @@
     background-color: $purple_regular;
     background-image: url("../images/clock.png");
     background-size: cover;
-    padding-top: 190px;
+    padding-top: 150px;
     #login-title {
         color: $white;
         font-size: 100pt;
@@ -27,14 +27,17 @@
         font-family: "Ubuntu";
     }
     @include placeholder {
-        font-family: "Ubuntu";
-        color: $purple_regular;
-        font-size:18pt;
-
+      font-family: "Ubuntu";
+      color: $purple_regular;
+      font-size: 18pt;
+    }
     input[type=submit]{
         float:right;
         width:30%;
         height:50px;
+        background-color:$purple_regular;
+        font-size:18pt;
+        font-family: "Ubuntu";
+        color:$pink;
     }
-}
 }

@@ -93,14 +93,74 @@
 }
 
 .off-canvas__nav {
-    padding: 70px 15px 15px 15px;
-    background-color: orange;
-    color: white;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 250px;
-    height: 100%;
-    -webkit-user-drag: none;
+  padding: 70px 15px 15px 15px;
+  background-color: $white;
+  color: white;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 250px;
+  height: 100%;
+  -webkit-user-drag: none;
+
+  #user-name-wrapper{
+      width:100%;
+      text-align:center;
+
+    #user-name {
+      color: $purple_regular;
+      width: auto;
+      font-size: 16pt;
+      font-family:"abel";
+      display:inline-block;
+      margin:auto;
+      text-transform: uppercase;
+      border-bottom:1px $purple_regular solid;
+      margin-bottom:22px;
+      padding-bottom:15px;
+    }
+  }
+
+  #navigation{
+    li {
+        margin:20px 0;
+      a{
+        color:$purple_regular;
+        font-family:"ubuntu";
+        font-size:16pt;
+        text-decoration:none;
+        text-transform:uppercase;
+
+        &.icon{
+          &:before{
+            font-family:"fontawesome";
+            color:$pink;
+            font-size:14pt;
+            margin-right:10px;
+          }
+          &.icon-agenda:before{
+            content: "\f073";
+          }
+          &.icon-home:before{
+            content: "\f015";
+          }
+          &.icon-informatie:before{
+            content: "\f059";
+          }
+          &.icon-berichten:before{
+            content: "\f0e6";
+          }
+        }
+      }
+      ul{
+        li a{
+          color:$pink;
+          font-size:12pt;
+          text-transform:none;
+          padding-left:30px;
+        }
+      }
+    }
+  }
 }
 
