@@ -24,7 +24,9 @@
 
     <div id="navigation-wrapper" ng-include src="'views/partials/navigation.html'"></div>
     <!-- Add your site or application content here -->
-    <div class="container" ng-view=""></div>
+    <div class="off-canvas__container off-canvas__content">
+      <div class="container" ng-view=""></div>
+    </div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
