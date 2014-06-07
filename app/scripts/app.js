@@ -78,8 +78,8 @@ var app = angular
     * Return the promises
     * Resolve for each route
 */
-var appCtrl = app.controller('AppCtrl', ['$scope', '$location', 'appInitialized', '$http', '$rootScope',
-    function($scope, $location, appInitialized, $http, $rootScope) {
+var appCtrl = app.controller('AppCtrl', ['$scope', '$location', 'appInitialized', '$http', '$rootScope', 'offCanvas',
+    function($scope, $location, appInitialized, $http, $rootScope, offCanvas) {
         if (appInitialized) {
             $location.path('/');
         }
@@ -103,10 +103,12 @@ var navCtrl = app.controller('navCtrl', ['offCanvas', '$rootScope',
         $rootScope.toggleNav = offCanvas.toggle;
     }
 ])
-    .factory('offCanvas', function(cnOffCanvas) {
-        return cnOffCanvas({
-            controller: 'navCtrl',
-            controllerAs: 'nav',
-            templateUrl: 'views/partials/offcanvas.html'
-        })
-    });
+    .factory('offCanvas', ['cnOffCanvas',
+        function(cnOffCanvas) {
+            return cnOffCanvas({
+                controller: 'navCtrl',
+                controllerAs: 'nav',
+                templateUrl: 'views/partials/offcanvas.html'
+            })
+        }
+    ]);
