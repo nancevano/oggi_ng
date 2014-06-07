@@ -31,3 +31,13 @@ $fa-font-path: "../fonts/";
     font-weight: normal;
     font-style: normal;
 }
+@font-face {
+    font-family: 'Forte';
+    src: url($font-path + 'forte-webfont.eot');
+    src: url($font-path + 'forte-webfont.eot?#iefix') format('embedded-opentype'),
+         url($font-path + 'forte-webfont.woff') format('woff'),
+         url($font-path + 'forte-webfont.ttf') format('truetype'),
+         url($font-path + 'forte-webfont.svg#abel-webfont') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
