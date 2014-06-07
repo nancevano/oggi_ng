@@ -6,10 +6,8 @@
     height: 200px;
     position: relative;
     #user-picture {
-        @include border-radius(100px);
         width: 180px;
         height: 180px;
-        border: 5px $purple_dark solid;
         position: absolute;
         bottom: -50px;
         left: 50%;

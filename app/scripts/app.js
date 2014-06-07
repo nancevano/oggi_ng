@@ -45,6 +45,10 @@ var app = angular
                 templateUrl: 'views/schedule.html',
                 controller: 'ScheduleCtrl'
             })
+            .when('/class', {
+                templateUrl: 'views/class.html',
+                controller: 'ClassCtrl'
+            })
             .otherwise({
                 redirectTo: '/'
             });

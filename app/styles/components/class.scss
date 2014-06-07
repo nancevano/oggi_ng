@@ -1,0 +1,110 @@
+#class-wrapper{
+   padding:0 15px;
+  #class-heading{
+    #view-selection{
+      width:100%;
+      #class-name{
+        font-family:"Abel";
+        font-size:24pt;
+        text-transform:uppercase;
+        color:$purple_regular;
+        margin:30px 0 0 0;
+      }
+    }
+  }
+  #teachers-information {
+    margin:30px 0;
+    #teachers-name {
+      a {
+        font-size: 18pt;
+        color: $pink;
+        font-family: "ubuntu";
+
+        &.icon{
+          &:before{
+            font-family:"fontawesome";
+            color:$pink;
+            font-size:14pt;
+            margin-right:10px;
+          }
+          &.icon-teacher:before{
+            content: "\f007";
+            display:inline-block;
+            font-size:16pt;
+          }
+        }
+      }
+    }
+
+  }
+  #lesson-information {
+    @extend %clearfix;
+    #teachers-picture{
+      width:160px;
+      height:160px;
+      float:right;
+
+    }
+    &.icon{
+      &:before{
+        font-family:"fontawesome";
+        color:$pink;
+        font-size:14pt;
+        margin-right:10px;
+      }
+      &.icon-book:before{
+        content: "\f02d";
+        display:inline-block;
+        font-size:16pt;
+      }
+    }
+    #lesson-name {
+      font-family: "Ubuntu";
+      font-size: 14pt;
+      color: $purple_dark;
+    }
+  }
+  #lesson-table {
+    width:80%;
+    margin-top:20px;
+    float:left;
+    &.icon{
+      &:before{
+        font-family:"fontawesome";
+        color:$pink;
+        font-size:14pt;
+        margin-right:10px;
+      }
+      &.icon-clock:before{
+        content:  "\f017";
+        display:inline-block;
+        font-size:16pt;
+      }
+    }
+    td{
+      color:$purple_dark;
+      font-size:14pt;
+      font-family:"ubuntu";
+
+      &.start-hour, &.end-hour{
+        width:40px;
+      }
+      &.dash{
+        width:20px;
+        text-align:center;
+      }
+    }
+  }
+  #links{
+    position:absolute;
+    bottom:5px;
+    right:5px;
+
+    #link-schedule{
+      color:$pink;
+      font-size:14pt;
+      font-family:"ubuntu";
+    }
+  }
+}
+
