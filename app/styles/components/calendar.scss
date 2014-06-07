@@ -39,7 +39,7 @@
 }
 
 #choose-month {
-    width: 60%;
+    width: 75%;
     float: left;
     position: absolute;
     bottom: 0;
@@ -50,6 +50,14 @@
         text-transform: uppercase;
         font-family: "Ubuntu";
         margin-left: 15px;
+    }
+    #arrow-right{
+        width:30px;
+        height:30px;
+    }
+    #arrow-left{
+        width:30px;
+        height:30px;
     }
 }
 
