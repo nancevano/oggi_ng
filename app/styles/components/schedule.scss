@@ -1,0 +1,9 @@
+#main-navigation {
+    position: relative;
+    background-color: $purple_dark;
+    padding: 5px 20px;
+    color: $white;
+    font-family: "Forte";
+    font-size: 24pt;
+    @extend %clearfix;
+   }
