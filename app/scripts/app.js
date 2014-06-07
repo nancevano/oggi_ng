@@ -78,7 +78,7 @@ var app = angular
     * Return the promises
     * Resolve for each route
 */
-var appCtrl = app.controller('AppCtrl', ['$scope', '$location', 'appInitialized', '$http', '$rootScope', 'offCanvas',
+var appCtrl = app.controller('AppCtrl', ['$scope', '$location', 'appInitialized', '$http', '$rootScope',
     function($scope, $location, appInitialized, $http, $rootScope) {
         if (appInitialized) {
             $location.path('/');

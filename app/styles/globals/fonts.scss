@@ -1,21 +1,33 @@
-@include font-face("Abel", 
-    font-files( "abel-webfont.woff", 
-                "abel-webfont.ttf", 
-                "abel-webfont.svg"
-    ), 
-                "abel-webfont.eot"
-);
-@include font-face("Ubuntu", 
-    font-files( "ubuntu-webfont.woff", 
-                "ubuntu-webfont.ttf", 
-                "ubuntu-webfont.svg"
-    ), 
-                "ubuntu-webfont.eot"
-);
-@include font-face("Meteocons", 
-    font-files( "meteocons-webfont.woff", 
-                "meteocons-webfont.ttf", 
-                "meteocons-webfont.svg"
-    ), 
-                "meteocons-webfont.eot"
-);
+$font-path: "../fonts/";
+$fa-font-path: "../fonts/";
+
+@font-face {
+    font-family: 'Abel';
+    src: url($font-path + 'abel-webfont.eot');
+    src: url($font-path + 'abel-webfont.eot?#iefix') format('embedded-opentype'),
+         url($font-path + 'abel-webfont.woff') format('woff'),
+         url($font-path + 'abel-webfont.ttf') format('truetype'),
+         url($font-path + 'abel-webfont.svg#abel-webfont') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Ubuntu';
+    src: url($font-path + 'ubuntu-webfont.eot');
+    src: url($font-path + 'ubuntu-webfont.eot?#iefix') format('embedded-opentype'),
+         url($font-path + 'ubuntu-webfont.woff') format('woff'),
+         url($font-path + 'ubuntu-webfont.ttf') format('truetype'),
+         url($font-path + 'ubuntu-webfont.svg#abel-webfont') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Meteocons';
+    src: url($font-path + 'meteocons-webfont.eot');
+    src: url($font-path + 'meteocons-webfont.eot?#iefix') format('embedded-opentype'),
+         url($font-path + 'meteocons-webfont.woff') format('woff'),
+         url($font-path + 'meteocons-webfont.ttf') format('truetype'),
+         url($font-path + 'meteocons-webfont.svg#abel-webfont') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
