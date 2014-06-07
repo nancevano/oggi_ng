@@ -37,6 +37,10 @@ var app = angular
                 templateUrl: 'views/day.html',
                 controller: 'DayCtrl'
             })
+            .when('/add', {
+                templateUrl: 'views/add.html',
+                controller: 'AddCtrl'
+            })
             .otherwise({
                 redirectTo: '/'
             });

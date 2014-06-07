@@ -1,0 +1,151 @@
+
+#add-item{
+  font-size:24pt;
+  font-family:"Abel";
+  text-transform:uppercase;
+  color:$purple_regular;
+  margin:15px 15px;
+}
+#form-add-item{
+   width:100%;
+   padding:15px;
+  #titel{
+    width:100%;
+    height:40px;
+    margin-bottom:15px;
+    border:0;
+    background-color:$purple_tint;
+    padding:10px;
+  }
+  @include placeholder {
+    font-family: "Abel";
+    color: $purple_regular;
+    font-size: 14pt;
+  }
+  #locatie{
+    width:85%;
+    height:40px;
+    margin-bottom:15px;
+    border:0;
+    background-color:$purple_tint;
+    padding:10px;
+  }
+  #geolocation{
+     display:block;
+     width:40px;
+     height:40px;
+     border:4px $purple_regular solid;
+     background-color:$pink;
+     position:relative;
+     float:right;
+
+     &:before{
+       display:block;
+       content:"\f041";
+       position:absolute;
+       top:0;
+       left:0;
+       width:100%;
+       height:100%;
+       font-family:"fontawesome";
+       color:$purple_dark;
+       font-size:24pt;
+       text-align:center;
+     }
+   }
+  #add-date{
+      color:$purple_regular;
+      text-decoration:none;
+      font-family:"Abel";
+      font-size:16pt;
+      margin-bottom:10px;
+  }#add-type{
+      color:$purple_regular;
+      text-decoration:none;
+      font-family:"Abel";
+      font-size:16pt;
+      margin-bottom:10px;
+  }
+  #choose-date{
+     width:100%;
+     height:40px;
+     margin-bottom:15px;
+     border:0;
+     background: url("../images/select-arrow.png") no-repeat right bottom $purple_regular;
+     background-color:$purple_tint;
+     font-family:"Abel";
+     color:$pink;
+     font-size:12pt;
+     padding:10px;
+  }
+  #choose-make-task{
+     width:100%;
+     height:40px;
+     margin-bottom:15px;
+     border:0;
+     background: url("../images/select-arrow.png") no-repeat right bottom $purple_regular;
+     background-color:$purple_tint;
+     font-family:"Abel";
+     color:$pink;
+     font-size:12pt;
+     padding:10px;
+  }
+  #choose-task{
+     width:100%;
+     height:40px;
+     margin-bottom:15px;
+     border:0;
+     background: url("../images/select-arrow.png") no-repeat right bottom $purple_regular;
+     background-color:$purple_tint;
+     font-family:"Abel";
+     color:$pink;
+     font-size:12pt;
+     padding:10px;
+  }
+  #add-hour-start{
+    text-transform:uppercase;
+    font-family:"Abel";
+    font-size:16pt;
+    color:$purple_regular;
+    width:25%;
+    float:left;
+    padding:10px;
+    line-height:20px;
+  }
+  #choose-hour-start{
+    width:25%;
+    height:40px;
+    margin-bottom:15px;
+    border:0;
+    background: url("../images/select-arrow.png") no-repeat right bottom $purple_regular;
+    background-color:$purple_tint;
+    font-family:"Abel";
+    color:$pink;
+    font-size:12pt;
+    padding:10px;
+    float:left;
+  }
+  #add-hour-end{
+    text-transform:uppercase;
+    font-family:"Abel";
+    font-size:16pt;
+    color:$purple_regular;
+    width:25%;
+    float:left;
+    text-align:center;
+    line-height:40px;
+  }
+  #choose-hour-end{
+    width:25%;
+    height:40px;
+    margin-bottom:15px;
+    border:0;
+    background: url("../images/select-arrow.png") no-repeat right bottom $purple_regular;
+    background-color:$purple_tint;
+    font-family:"Abel";
+    color:$pink;
+    font-size:12pt;
+    padding:10px;
+    float:left;
+  }
+}
