@@ -1,11 +1,12 @@
 #conversations-wrapper {
-  padding: 15px 15px;
+  padding: 15px 0;
   #view-selection {
     #conversations-title {
       font-family: "abel";
       color: $purple_regular;
       text-transform: uppercase;
       font-size: 24pt;
+      padding:0 10px;
     }
 
   }
@@ -13,10 +14,9 @@
     margin-top:15px;
     #conversation-list{
       li{
-        height:50px;
-        margin-bottom:10px;
-        &:nth-child(2n+2) {
-          color: $purple_tint;
+        padding:10px;
+        &:nth-child(2n+1) {
+          background-color: $purple_tint;
         }
         .conversations-image{
           float:left;
@@ -31,6 +31,7 @@
           color:$purple_light;
           font-family:"abel";
           font-size:14pt;
+          font-weight:bold;
         }
         p{
           color:$purple_dark;

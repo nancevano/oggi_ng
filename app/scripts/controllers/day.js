@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('oggiNgApp')
-    .controller('DayCtrl', ['$scope',
+angular.module('oggiApp.controllers')
+    .controller('oggiApp.controllers.DayCtrl', ['$scope',
         function($scope) {
             $scope.awesomeThings = [
                 'HTML5 Boilerplate',
