@@ -9,10 +9,10 @@
     <a href="#add" id="calendar-item"><span id="add-calendar-item">Voeg toe
     <i class="fa fa-plus"></i></span>
     </a>
-    <div id="choose-month">
-        <a href="" id="left"></a>
-        <h1>WO. 26 Maart </h1>
-        <a href="" id="right"></a>
+    <div class="calendar-stepper" ng-init="setDayString()">
+        <a href="" class="stepper-left" ng-click="previousDay()"></a>
+        <h1>{{ currentDay }}</h1>
+        <a href="" class="stepper-right" ng-click="nextDay()"></a>
     </div>
 </div>
 <table id="day-calendar">

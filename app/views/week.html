@@ -9,22 +9,16 @@
     <a href="#add" id="calendar-item"><span id="add-calendar-item">Voeg toe
     <i class="fa fa-plus"></i></span>
     </a>
-    <div class="choose-week">
+    <div class="calendar-stepper" ng-init="setCurrentMonday()">
         <a href="" class="stepper-left" ng-click="previousWeek()"></a>
-        <h1>Week {{ currentWeek }}</h1>
+        <h1>Week {{ currentWeek }} ({{ currentYear }})</h1>
         <a href="" class="stepper-right" ng-click="nextWeek()"></a>
     </div>
 </div>
-<table id="week-calendar">
+<table id="week-calendar" ng-init="buildWeekCalendar()">
 	<thead>
 		<tr>
-			<th>20 <span class="month"> mrt.</span></th>
-			<th>21 <span class="month"> mrt.</span></th>
-			<th>22 <span class="month"> mrt.</span></th>
-			<th>23 <span class="month"> mrt.</span></th>
-			<th>24 <span class="month"> mrt.</span></th>
-			<th>25 <span class="month"> mrt.</span></th>
-			<th>26 <span class="month"> mrt.</span></th>
+			<th ng-repeat="days in daysInWeek">{{ days.day }}<span class="month">{{ days.month }}</span></th>
 		</tr>
 	</thead>
 	<tbody>
