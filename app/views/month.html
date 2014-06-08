@@ -9,69 +9,14 @@
     <a href="#add" id="calendar-item"><span id="add-calendar-item">Voeg toe
     <i class="fa fa-plus"></i></span>
 </a>
-    <div id="choose-month">
-        <a href="" id="left"></a>
-        <h1>Maart 2014 </h1>
-        <a href="" id="right"></a>
+    <div class="calendar-stepper">
+        <a href="" class="stepper-left" ng-click="previousMonth()"></a>
+        <h1>{{ currentMonthFull }} {{ currentYear }}</h1>
+        <a href="" class="stepper-right" ng-click="nextMonth()"></a>
     </div>
 </div>
-<table id="month-calendar">
-	<thead>
-		<tr>
-			<th>Ma</th>
-			<th>Di</th>
-			<th>Wo</th>
-			<th>Do</th>
-			<th>Vr</th>
-			<th>Za</th>
-			<th>Zo</th>
-		</tr>
-	</thead>
-		<tr class="week">
-			<td>27</td>
-			<td>28</td>
-			<td>1</td>
-			<td>2</td>
-			<td id="today">3<span class="circle"></span></td>
-			<td>4</td>
-			<td>5</td>
-		</tr>
-			<tr class="week">
-			<td>6</td>
-			<td>7</td>
-			<td>8</td>
-			<td>9</td>
-			<td>10</td>
-			<td>11</td>
-			<td>12</td>
-		</tr>
-			<tr class="week">
-			<td>13</td>
-			<td>14</td>
-			<td>15</td>
-			<td>16</td>
-			<td>17</td>
-			<td>18</td>
-			<td>19</td>
-		</tr>
-			<tr class="week">
-			<td>20</td>
-			<td>21</td>
-			<td>22</td>
-			<td>23</td>
-			<td>24</td>
-			<td>25</td>
-			<td>26</td>
-		</tr>
-			<tr class="week">
-			<td>27</td>
-			<td>28</td>
-			<td>29</td>
-			<td>30</td>
-			<td>31</td>
-			<td>1</td>
-			<td>2</td>
-		</tr>
-</table>
+<ul id="month-calendar" ng-init="createCalendar()">
+    <li ng-repeat="day in daysInMonth" class="{{ day.class }}">{{ day.date }}</li>
+</ul>
 
 

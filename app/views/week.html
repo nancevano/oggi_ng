@@ -9,10 +9,10 @@
     <a href="#add" id="calendar-item"><span id="add-calendar-item">Voeg toe
     <i class="fa fa-plus"></i></span>
     </a>
-    <div id="choose-month">
-        <a href="" id="left"></a>
-        <h1>Week 16 </h1>
-        <a href="" id="right"></a>
+    <div class="choose-week">
+        <a href="" class="stepper-left" ng-click="previousWeek()"></a>
+        <h1>Week {{ currentWeek }}</h1>
+        <a href="" class="stepper-right" ng-click="nextWeek()"></a>
     </div>
 </div>
 <table id="week-calendar">
