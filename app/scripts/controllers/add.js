@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('oggiNgApp')
-    .controller('AddCtrl', ['$scope',
+angular.module('oggiApp.controllers')
+    .controller('oggiApp.controllers.AddCtrl', ['$scope',
         function($scope) {
             $scope.awesomeThings = [
                 'HTML5 Boilerplate',

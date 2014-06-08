@@ -1,7 +1,12 @@
 'use strict';
 
+angular.module('oggiApp.controllers', []);
+angular.module('oggiApp.services', []);
+
 var app = angular
-    .module('oggiNgApp', [
+    .module('oggiApp', [
+        'oggiApp.controllers',
+        'oggiApp.services',
         'ngCookies',
         'ngResource',
         'ngSanitize',
@@ -12,42 +17,42 @@ var app = angular
         $routeProvider
             .when('/app', {
                 templateUrl: 'views/preload.html',
-                controller: 'AppCtrl',
+                controller: 'oggiApp.controllers.AppCtrl',
                 resolve: {
                     appInitialized: appCtrl.initialize
                 }
             })
             .when('/', {
                 templateUrl: 'views/main.html',
-                controller: 'MainCtrl'
+                controller: 'oggiApp.controllers.MainCtrl'
             })
             .when('/month', {
                 templateUrl: 'views/month.html',
-                controller: 'MonthCtrl'
+                controller: 'oggiApp.controllers.MonthCtrl'
             })
             .when('/week', {
                 templateUrl: 'views/week.html',
-                controller: 'WeekCtrl'
+                controller: 'oggiApp.controllers.WeekCtrl'
             })
             .when('/login', {
                 templateUrl: 'views/login.html',
-                controller: 'LoginCtrl'
+                controller: 'oggiApp.controllers.LoginCtrl'
             })
             .when('/day', {
                 templateUrl: 'views/day.html',
-                controller: 'DayCtrl'
+                controller: 'oggiApp.controllers.DayCtrl'
             })
             .when('/add', {
                 templateUrl: 'views/add.html',
-                controller: 'AddCtrl'
+                controller: 'oggiApp.controllers.AddCtrl'
             })
             .when('/schedule', {
                 templateUrl: 'views/schedule.html',
-                controller: 'ScheduleCtrl'
+                controller: 'oggiApp.controllers.ScheduleCtrl'
             })
             .when('/class', {
                 templateUrl: 'views/class.html',
-                controller: 'ClassCtrl'
+                controller: 'oggiApp.controllers.ClassCtrl'
             })
             .otherwise({
                 redirectTo: '/'
@@ -82,7 +87,7 @@ var app = angular
     * Return the promises
     * Resolve for each route
 */
-var appCtrl = app.controller('AppCtrl', ['$scope', '$location', 'appInitialized', '$http', '$rootScope', 'offCanvas',
+var appCtrl = app.controller('oggiApp.controllers.AppCtrl', ['$scope', '$location', 'appInitialized', '$http', '$rootScope', 'offCanvas',
     function($scope, $location, appInitialized, $http, $rootScope, offCanvas) {
         if (appInitialized) {
             $location.path('/');
@@ -101,8 +106,29 @@ appCtrl.initialize = ['$rootScope', '$q', '$timeout',
         return deferred.promise;
     }
 ];
+appCtrl.getGeoloc = ['$q', 'oggiApp.services.GeolocSrvc', function($q, GeolocSrvc){
+    var deferred = $q.defer();
 
-var navCtrl = app.controller('navCtrl', ['offCanvas', '$rootScope',
+    GeolocSrvc.getGeoLoc().then(
+        function(data){
+            deferred.resolve(data);
+        },
+        function(error){
+            deferred.reject(error);
+        }
+    );
+    return deferred.promise;
+}];
+
+
+/*
+ NavCtrl
+ =======
+ Controller for the App
+ ----------------------
+ * Manages offcanvas navigation
+ */
+var navCtrl = app.controller('oggiApp.controllers.navCtrl', ['offCanvas', '$rootScope',
     function(offCanvas, $rootScope) {
         $rootScope.toggleNav = offCanvas.toggle;
     }
@@ -110,7 +136,7 @@ var navCtrl = app.controller('navCtrl', ['offCanvas', '$rootScope',
     .factory('offCanvas', ['cnOffCanvas',
         function(cnOffCanvas) {
             return cnOffCanvas({
-                controller: 'navCtrl',
+                controller: 'oggiApp.controllers.navCtrl',
                 controllerAs: 'nav',
                 templateUrl: 'views/partials/offcanvas.html'
             })
