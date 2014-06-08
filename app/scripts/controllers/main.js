@@ -12,7 +12,7 @@ angular.module('oggiApp.controllers')
             ];
 
             $scope.init_informations = function(){
-                $scope.weather = WeatherSrvc.getCurrentWeather();
+                //$scope.weather = WeatherSrvc.getCurrentWeather();
             };
         }
     ]);

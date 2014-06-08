@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('oggiNgApp')
+angular.module('oggiApp')
     .controller('ConversationsCtrl', ['$scope',
         function($scope) {
             $scope.awesomeThings = [
