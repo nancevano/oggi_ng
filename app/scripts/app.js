@@ -57,6 +57,9 @@ var app = angular
             .when('/conversations', {
                 templateUrl: 'views/conversations.html',
                 controller: 'ConversationsCtrl'
+            }).when('/contact', {
+                templateUrl: '../views/contact.html',
+                controller: 'ContactCtrl'
             })
             .otherwise({
                 redirectTo: '/'

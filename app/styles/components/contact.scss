@@ -1,0 +1,58 @@
+#contact-wrapper {
+  padding: 15px 0;
+  #view-selection {
+    #contact-title {
+      font-family: "abel";
+      color: $purple_regular;
+      text-transform: uppercase;
+      font-size: 24pt;
+      padding: 0 10px;
+    }
+  }
+  #contactform{
+    width:100%;
+    text-align:center;
+    margin-top:15px;
+
+    input {
+      width: 80%;
+      margin: 10px;
+      border: 0;
+      height: 50px;
+      background-color: $purple_tint;
+      color:$purple_dark;
+      font-family: "Ubuntu";
+      padding:10px;
+      font-size:14pt;
+    }
+    textarea{
+      width:80%;
+      height:300px;
+      margin:10px 9%;
+      border:0;
+      background: url("../images/select-arrow.png") no-repeat right bottom $purple_regular;
+      background-color:$purple_tint;
+      color:$purple_dark;
+      font-family:"ubuntu";
+      padding:10px;
+      font-size:14pt;
+      resize:vertical;
+    }
+    @include placeholder {
+      font-family: "Ubuntu";
+      color: $purple_regular;
+      font-size: 18pt;
+      padding:0 30px;
+    }
+    input[type=submit]{
+      background-color:$purple_regular;
+      width:30%;
+      float:right;
+      margin-right:38px;
+      color:$white;
+      font-family:"ubuntu";
+      font-size:16pt;
+      cursor:pointer;
+    }
+  }
+}
