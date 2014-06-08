@@ -54,6 +54,10 @@ var app = angular
                 templateUrl: 'views/class.html',
                 controller: 'oggiApp.controllers.ClassCtrl'
             })
+            .when('/conversations', {
+                templateUrl: 'views/conversations.html',
+                controller: 'ConversationsCtrl'
+            })
             .otherwise({
                 redirectTo: '/'
             });
