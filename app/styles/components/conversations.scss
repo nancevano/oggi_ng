@@ -1,0 +1,43 @@
+#conversations-wrapper {
+  padding: 15px 15px;
+  #view-selection {
+    #conversations-title {
+      font-family: "abel";
+      color: $purple_regular;
+      text-transform: uppercase;
+      font-size: 24pt;
+    }
+
+  }
+  #conversations-page{
+    margin-top:15px;
+    #conversation-list{
+      li{
+        height:50px;
+        margin-bottom:10px;
+        &:nth-child(2n+2) {
+          color: $purple_tint;
+        }
+        .conversations-image{
+          float:left;
+          margin-right:10px;
+          display:inline-block;
+          #conversations-user-picture{
+            height:50px;
+            width:50px;
+          }
+        }
+        h5{
+          color:$purple_light;
+          font-family:"abel";
+          font-size:14pt;
+        }
+        p{
+          color:$purple_dark;
+          font-family:"ubuntu";
+          font-size:12pt;
+        }
+      }
+    }
+  }
+}
