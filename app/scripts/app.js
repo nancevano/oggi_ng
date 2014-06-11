@@ -11,9 +11,13 @@ var app = angular
         'ngResource',
         'ngSanitize',
         'ngRoute',
-        'cn.offCanvas'
+        'cn.offCanvas',
+        'LocalStorageModule',
+        'base64'
     ])
-    .config(function($routeProvider) {
+    .config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider) {
+        $httpProvider.defaults.useXDomain = true;//Cross Domain Calls --> Ok Ready
+        delete $httpProvider.defaults.headers.common['X-Requested-With'];
         $routeProvider
             .when('/app', {
                 templateUrl: 'views/preload.html',
@@ -64,10 +68,12 @@ var app = angular
             .otherwise({
                 redirectTo: '/'
             });
-    })
+    }])
     .run(['$rootScope', '$timeout', '$location', '$window', '$http',
         function($rootScope, $timeout, $location, $window, $http) {
+            $rootScope.user = null;
             $rootScope.appInitialized = false;
+            $rootScope.URLAPI = "http://localhost:8080/oggi_bo/web/app_dev.php/api";
 
             $rootScope.$on('$routeChangeStart', function(event, next, current) {
                 if (!$rootScope.appInitialized) {
@@ -82,6 +88,18 @@ var app = angular
                     $window.history.back();
                 }, 100);
             }
+
+            /*$rootScope.refreshUser = function(){
+                $http({method: 'GET', url: $rootScope.URLAPI + "/user/info"})
+                    .success(function(data, status, headers, config) {
+                        if(data !== null){
+                            $rootScope.user = data;
+                        }
+                    })
+                    .error(function(data, status, headers, config) {
+                        alert(error);
+                    });
+            }*/
         }
     ]);
 
