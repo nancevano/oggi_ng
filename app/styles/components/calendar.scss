@@ -159,23 +159,34 @@
     }
 }
 #day-calendar{
-  width:90%;
-  float:right;
+  display: table;
+  width: 100%;
+  td {
+    color: $pink;
+    font-size: 12pt;
+    font-family: "Abel";
+    text-align: left;
+    padding: 5px;
 
-  tbody {
-    tr{
-      &:nth-child(2n+1) {
-        border-top: 1px $purple-regular solid;
-      }
-      &:nth-child(2n+2) {
-        border-top: 1px $lila solid;
-      }
+    &.a-top{
+      text-align: center;
+      vertical-align: top;
 
+      padding-top: 0px;
     }
-    td {
-      background-color: $white;
-      width: 14.28%;
-      height: 20px;
+
+    &.a-bottom{
+      text-align: center;
+      vertical-align: bottom;
+
+      padding-bottom: 0px;
     }
+  }
+  tr {
+    background-color: #eeeeee;
+  }
+  tr:nth-child(4n+1),
+  tr:nth-child(4n+2){
+    background-color: $purple_tint;
   }
 }

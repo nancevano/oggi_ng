@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('oggiApp.controllers')
-    .controller('oggiApp.controllers.DayCtrl', ['$scope',
-        function($scope) {
+    .controller('oggiApp.controllers.DayCtrl', ['$scope', '$http', '$rootScope',
+        function($scope, $http, $rootScope) {
             $scope.awesomeThings = [
                 'HTML5 Boilerplate',
                 'AngularJS',
@@ -38,6 +38,8 @@ angular.module('oggiApp.controllers')
             $scope.currentDay = $scope.today.getDate();
             $scope.startYear = $scope.today.getMonth() > 8 ? $scope.today.getFullYear() : $scope.today.getFullYear() - 1;
 
+
+
             $scope.previousDay = function(){
                 $scope.today.setDate($scope.today.getDate() - 1);
 
@@ -46,6 +48,7 @@ angular.module('oggiApp.controllers')
                 }
 
                 $scope.setDayString();
+                $scope.createSubjects();
             };
 
             $scope.nextDay = function(){
@@ -56,6 +59,7 @@ angular.module('oggiApp.controllers')
                 }
 
                 $scope.setDayString();
+                $scope.createSubjects();
             };
 
             $scope.setDayString = function(){
@@ -66,6 +70,46 @@ angular.module('oggiApp.controllers')
                 result += ' ' + $scope.today.getFullYear();
 
                 $scope.currentDay = result;
-            }
+            };
+
+            $scope.subjectsToday = [];
+            $scope.createSubjects = function(){
+                var link = $scope.today.getDate() + '/' + ($scope.today.getMonth() + 1) + '/' + $scope.today.getFullYear();
+                $http({method: 'POST', url: $rootScope.URLAPI + '/calendar/' + link, data: {user: $rootScope.user.id}}).
+                    success(function(data, status) {
+                        if(data != null){
+                            var courses = $.map(data, function(v, i){
+                                console.log(v);
+                                return [v];
+                            });
+                            courses = courses[2];
+                            courses.sort(function (a, b) {
+                                return new Date(a.schedule.timeslot.start) - new Date(b.schedule.timeslot.start);
+                            });
+
+                            $.each(courses, function(i, v){
+                                var t = new Date(v.schedule.timeslot.start);
+                                var hours = ('0' + t.getHours()).slice(-2);
+                                var minutes = ('0' + t.getMinutes()).slice(-2);
+
+                                $scope.subjectsToday.push({
+                                    time: hours + ':' + minutes,
+                                    name: v.schedule.course.name.substring(0, 3),
+                                    message: v.subject.message,
+                                    task: '/'
+                                });
+                            });
+
+                            console.log($scope.subjectsToday);
+                        }
+                    }).
+                    error(function(data, status) {
+                        $scope.errors = [];
+                        for(var i=0; i < data.text.length; i++){
+                            $scope.errors.push(data.text[i]);
+                        }
+                    }
+                );
+            };
         }
     ]);
