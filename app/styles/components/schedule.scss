@@ -17,6 +17,8 @@
       margin:0 15px;
       width:auto;
       float:left;
+      width: 50%;
+      text-align: center;
     }
     #left{
       display:block;
@@ -41,18 +43,28 @@
 #today {
     width:100%;
     margin-top:30px;
-  #schedule-this-day {
+  tbody {
     display: table;
     width: 100%;
-    td {
-      color: $pink;
-      font-size: 12pt;
-      font-family: "Abel";
-      text-align: left;
-      padding: 15px;
-    }
-    tr:nth-child(2n+1) {
-      background-color: $purple_tint;
+
+
+    tr {
+      background-color: $white;
+
+      td {
+        color: $pink;
+        font-size: 12pt;
+        font-family: "Abel";
+        text-align: left;
+        padding: 15px;
+
+        &:first-child {
+          width: 15%;
+        }
+      }
+      &:nth-child(2n+1) {
+        background-color: $purple_tint;
+      }
     }
   }
 }

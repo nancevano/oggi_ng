@@ -13,51 +13,20 @@
 		<span id="date">Woensdag 19 maart</span>
 	</div>
 </div>
-<table id="schedule-today" ng-init="buildTodaysSchedule()">
+<table id="schedule-today" ng-init="createDailySchedule()">
+    <thead>
+        <td colspan="3">
+            <h3 id="schedule-today-heading" id="schedule-left">Vandaag</h3>
+            <div class="right" id="schedule-right">
+                <a href="#add" id="schedule-item"><i class="fa fa-plus"></i></a>
+            </div>
+        </td>
+    </thead>
     <tbody id="body-schedule-today">
-	<h3 id="schedule-today-heading" id="schedule-left">Vandaag</h3>
-	<div class="right" id="schedule-right">
-		<a href="#add" id="schedule-item"><i class="fa fa-plus"></i></a>
-	</div>
-	<tr>
-		<td>08:30</td>
-		<td>Wiskunde</td>
-		<td>B1</td>
-	</tr>
-	<tr>
-		<td>09:20</td>
-		<td>Aardrijkskunde</td>
-		<td>A13</td>
-	</tr>
-	<tr>
-		<td>10:20</td>
-		<td>Biologie</td>
-		<td>A12</td>
-	</tr>
-	<tr>
-		<td>12:00</td>
-		<td>Plastische opvoeding</td>
-		<td>B5</td>
-	</tr>
-	<tr>
-		<td>08:30</td>
-		<td>Wiskunde</td>
-		<td>B1</td>
-	</tr>
-	<tr>
-		<td>09:20</td>
-		<td>Aardrijkskunde</td>
-		<td>A13</td>
-	</tr>
-	<tr>
-		<td>10:20</td>
-		<td>Biologie</td>
-		<td>A12</td>
-	</tr>
-	<tr>
-		<td>12:00</td>
-		<td>Plastische opvoeding</td>
-		<td>B5</td>
-	</tr>
+        <tr ng-repeat="course in coursesToday">
+            <td>{{ course.start }}</td>
+            <td>{{ course.name }}</td>
+            <td>{{ course.classroom }}</td>
+        </tr>
+    </tbody>
 </table>
-</tbody>
