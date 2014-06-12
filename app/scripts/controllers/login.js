@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('oggiApp.controllers')
-    .controller('oggiApp.controllers.LoginCtrl', ['$scope','$base64', '$http', 'localStorageService', '$rootScope',
-        function($scope, $base64, $http, localStorageService, $rootScope) {
+    .controller('oggiApp.controllers.LoginCtrl', ['$scope','$base64', '$http', 'localStorageService', '$rootScope', '$location',
+        function($scope, $base64, $http, localStorageService, $rootScope, $location) {
             $scope.awesomeThings = [
                 'HTML5 Boilerplate',
                 'AngularJS',
@@ -29,12 +29,11 @@ angular.module('oggiApp.controllers')
                     }).
                     error(function(data, status) {
                         $scope.errors = [];
-console.log(data);
                         for(var i=0; i < data.text.length; i++){
                             $scope.errors.push(data.text[i]);
                         }
-                    })
-                ;
+                    }
+                );
             }
         }
     ]);

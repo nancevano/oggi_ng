@@ -112,10 +112,24 @@ var app = angular
     * Return the promises
     * Resolve for each route
 */
-var appCtrl = app.controller('oggiApp.controllers.AppCtrl', ['$scope', '$location', 'appInitialized', '$http', '$rootScope', 'offCanvas',
-    function($scope, $location, appInitialized, $http, $rootScope, offCanvas) {
+var appCtrl = app.controller('oggiApp.controllers.AppCtrl', ['$scope', '$location', 'appInitialized', '$http', '$rootScope', 'localStorageService', 'offCanvas',
+    function($scope, $location, appInitialized, $http, $rootScope, localStorageService, offCanvas) {
         if (appInitialized) {
             $location.path('/');
+        }
+
+        if(localStorageService.get('user') !== null){
+            var user = localStorageService.get('user');
+            $http.defaults.headers.common.Authorization = 'Basic ' + user;
+            $http({method: 'GET', url: $rootScope.URLAPI + "/user/credentials"})
+                .success(function(data, status, headers, config) {
+                    if(data !== null){
+                        $rootScope.user = data;
+                    }
+                })
+                .error(function(data, status, headers, config) {
+                    alert(error);
+                });
         }
     }
 ]);
