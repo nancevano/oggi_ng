@@ -1,16 +1,16 @@
 <div id="login">
-	<img id="user-picture" class="picture-round-bordered" src="//www.localcrimenews.com/wp-content/uploads/2013/07/default-user-icon-profile.png">
+	<img id="user-picture" ng-init="setUserImage()" class="picture-round-bordered" src="{{ picture }}">
 </div>
 <div id="informations" ng-init="init_informations()">
 	<div class="left" id="informations-left">
-		<span id="time">11:19</span>
+		<span id="time" ng-init="initClock()">{{ currentTime }}</span>
 	</div>
 	<div class="right" id="informations-right">
 		<span id="weather">
 			<span>{{ weather.weather[0].main }}<br />{{ weather.main.temp | number:0 }}° </span>
 			<span data-icon="H" id="weather-icon"></span>
 		</span>
-		<span id="date">Woensdag 19 maart</span>
+		<span id="date">{{ currentDate }}</span>
 	</div>
 </div>
 <table id="schedule-today" ng-init="createDailySchedule()">

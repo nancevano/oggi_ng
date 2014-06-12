@@ -168,7 +168,18 @@ appCtrl.getGeoloc = ['$q', 'oggiApp.services.GeolocSrvc', function($q, GeolocSrv
  */
 var navCtrl = app.controller('oggiApp.controllers.navCtrl', ['offCanvas', '$rootScope',
     function(offCanvas, $rootScope) {
-        $rootScope.toggleNav = offCanvas.toggle;
+        $rootScope.toggleNav = function() {
+            offCanvas.toggle();
+
+            if ($('body').hasClass('is-off-canvas-opened')) {
+                $('.off-canvas__nav').animate({left: '0px'});
+                $('.off-canvas__container').animate({left: '250px'});
+            }
+            else {
+                $('.off-canvas__nav').animate({left: '-250px'});
+                $('.off-canvas__container').animate({left: '0px'});
+            }
+        };
     }
 ])
     .factory('offCanvas', ['cnOffCanvas',
