@@ -112,11 +112,18 @@ var app = angular
     * Return the promises
     * Resolve for each route
 */
-var appCtrl = app.controller('oggiApp.controllers.AppCtrl', ['$scope', '$location', 'appInitialized', '$http', '$rootScope', 'localStorageService', 'offCanvas',
+var appCtrl = app.controller('oggiApp.controllers.AppCtrl', ['$scope', '$location', 'appInitialized', 'offCanvas',
     function($scope, $location, appInitialized, $http, $rootScope, localStorageService, offCanvas) {
         if (appInitialized) {
             $location.path('/');
         }
+
+    }
+]);
+
+appCtrl.initialize = ['$rootScope', '$q', '$timeout', '$http', 'localStorageService',
+    function($rootScope, $q, $timeout, $http, localStorageService) {
+        var deferred = $q.defer();
 
         if(localStorageService.get('user') !== null){
             var user = localStorageService.get('user');
@@ -125,22 +132,14 @@ var appCtrl = app.controller('oggiApp.controllers.AppCtrl', ['$scope', '$locatio
                 .success(function(data, status, headers, config) {
                     if(data !== null){
                         $rootScope.user = data;
+                        $rootScope.appInitialized = true;
+                        deferred.resolve(true);
                     }
                 })
                 .error(function(data, status, headers, config) {
-                    alert(error);
+                    deferred.reject(data);
                 });
         }
-    }
-]);
-
-appCtrl.initialize = ['$rootScope', '$q', '$timeout',
-    function($rootScope, $q, $timeout) {
-        var deferred = $q.defer();
-
-
-        $rootScope.appInitialized = true;
-        deferred.resolve(true);
 
         return deferred.promise;
     }
