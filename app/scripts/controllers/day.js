@@ -74,6 +74,8 @@ angular.module('oggiApp.controllers')
 
             $scope.subjectsToday = [];
             $scope.createSubjects = function(){
+                $scope.subjectsToday = [];
+                
                 var link = $scope.today.getDate() + '/' + ($scope.today.getMonth() + 1) + '/' + $scope.today.getFullYear();
                 $http({method: 'POST', url: $rootScope.URLAPI + '/calendar/' + link, data: {user: $rootScope.user.id}}).
                     success(function(data, status) {
