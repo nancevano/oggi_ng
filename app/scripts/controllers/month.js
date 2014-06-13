@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('oggiApp.controllers')
-    .controller('oggiApp.controllers.MonthCtrl', ['$scope',
-        function($scope) {
+    .controller('oggiApp.controllers.MonthCtrl', ['$scope', '$rootScope',
+        function($scope, $rootScope) {
             $scope.awesomeThings = [
                 'HTML5 Boilerplate',
                 'AngularJS',
@@ -89,24 +89,49 @@ angular.module('oggiApp.controllers')
                 var dtd = Math.ceil((dim+start)/7) * 7;
 
                 for(var q = 0; q <= 6; q++) {
-                    $scope.daysInMonth.push({date: $scope.daysShort[q], class: 'header'});
+                    $scope.daysInMonth.push({
+                            date: $scope.daysShort[q],
+                            class:  'header',
+                            link:   '#'
+                        });
                 }
 
                 for(var i = ndipm - start + 1; i <= ndipm; i++) {
-                    $scope.daysInMonth.push({date: i, class: 'not-in-month'});
+                    $scope.daysInMonth.push({
+                        date:   i,
+                        class:  'not-in-month',
+                        link:   '#'
+                    });
                 }
 
                 for(var a = 1; a <= dim; a++) {
+                    var dd = ("0" + a).slice(-2);
+                    var mm = ("0" + ($scope.currentMonth + 1)).slice(-2);
+                    var link =  '#day/' + $scope.currentYear + '-' + mm + '-' + dd;
                     var cls =   a == $scope.original_date.getDate() &&
                                 $scope.original_date.getMonth() == $scope.currentMonth ?
                                 'today' : 'in-month';
-                    console.log($scope.original_date.getDate());
-                    $scope.daysInMonth.push({date: a, class: cls});
+                    $scope.daysInMonth.push({
+                        date:   a,
+                        class:  cls,
+                        link:   link
+                    });
                 }
 
                 for(var x = 1; x <= dtd - start - dim; x++) {
-                    $scope.daysInMonth.push({date: x, class: 'not-in-month'});
+                    $scope.daysInMonth.push({
+                        date:   x,
+                        class:  'not-in-month',
+                        link:   '#'
+                    });
                 }
-            }
+            };
+
+            $scope.reRouteDayview = function(e) {
+                var t = e.target;
+                var l = $(t).data('link');
+
+                if(l != '#')window.location.href = l;
+            };
         }
     ]);

@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('oggiApp.controllers')
-    .controller('oggiApp.controllers.DayCtrl', ['$scope', '$http', '$rootScope',
-        function($scope, $http, $rootScope) {
+    .controller('oggiApp.controllers.DayCtrl', ['$scope', '$http', '$rootScope', '$routeParams',
+        function($scope, $http, $rootScope, $routeParams) {
             $scope.awesomeThings = [
                 'HTML5 Boilerplate',
                 'AngularJS',
@@ -34,7 +34,7 @@ angular.module('oggiApp.controllers')
                 'ZA'
             ];
 
-            $scope.today = new Date();
+            $scope.today = typeof($routeParams.date) !== 'undefined' ? new Date($routeParams.date) : new Date();
             $scope.currentDay = $scope.today.getDate();
             $scope.startYear = $scope.today.getMonth() > 8 ? $scope.today.getFullYear() : $scope.today.getFullYear() - 1;
 
@@ -75,13 +75,12 @@ angular.module('oggiApp.controllers')
             $scope.subjectsToday = [];
             $scope.createSubjects = function(){
                 $scope.subjectsToday = [];
-                
+
                 var link = $scope.today.getDate() + '/' + ($scope.today.getMonth() + 1) + '/' + $scope.today.getFullYear();
                 $http({method: 'POST', url: $rootScope.URLAPI + '/calendar/' + link, data: {user: $rootScope.user.id}}).
                     success(function(data, status) {
                         if(data != null){
                             var courses = $.map(data, function(v, i){
-                                console.log(v);
                                 return [v];
                             });
                             courses = courses[2];
@@ -101,8 +100,6 @@ angular.module('oggiApp.controllers')
                                     task: '/'
                                 });
                             });
-
-                            console.log($scope.subjectsToday);
                         }
                     }).
                     error(function(data, status) {

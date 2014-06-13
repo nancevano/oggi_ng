@@ -16,7 +16,7 @@
     </div>
 </div>
 <ul id="month-calendar" ng-init="createCalendar()">
-    <li ng-repeat="day in daysInMonth" class="{{ day.class }}">{{ day.date }}</li>
+    <li ng-repeat="day in daysInMonth" class="{{ day.class }}" data-link="{{ day.link }}" ng-click="reRouteDayview($event)">{{ day.date }}</li>
 </ul>
 
 

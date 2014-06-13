@@ -42,7 +42,7 @@ var app = angular
                 templateUrl: 'views/login.html',
                 controller: 'oggiApp.controllers.LoginCtrl'
             })
-            .when('/day', {
+            .when('/day/:date?', {
                 templateUrl: 'views/day.html',
                 controller: 'oggiApp.controllers.DayCtrl'
             })

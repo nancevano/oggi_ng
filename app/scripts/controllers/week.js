@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('oggiApp.controllers')
-    .controller('oggiApp.controllers.WeekCtrl', ['$scope',
-        function($scope) {
+    .controller('oggiApp.controllers.WeekCtrl', ['$scope', '$rootScope', '$http',
+        function($scope, $rootScope, $http) {
             $scope.awesomeThings = [
                 'HTML5 Boilerplate',
                 'AngularJS',
@@ -101,8 +101,30 @@ angular.module('oggiApp.controllers')
                 var d = typeof(cd) === 'undefined' ? new Date() : cd;
                 d.setDate(d.getDate() - (d.getDay() + 6) % 7);
                 $scope.currentMonday = d;
-            }
+            };
 
-            $scope.setMonday = function(){}
+            $scope.weekSchedule = '';
+            $scope.buildWeekSchedule = function(){
+                $scope.weekSchedule = '';
+                var url = $rootScope.URLAPI + '/calendar/week/' + $scope.currentWeek + '/' + $scope.currentYear;
+                console.log(url);
+
+                $http({method: 'POST', url: url, data: {user: $rootScope.user.id}}).
+                    success(function(data, status) {
+                        if(data != null){
+                            console.log(data);
+                            $.each(data, function(){
+
+                            });
+                        }
+                    }).
+                    error(function(data, status) {
+                        $scope.errors = [];
+                        for(var i=0; i < data.text.length; i++){
+                            $scope.errors.push(data.text[i]);
+                        }
+                    }
+                );
+            };
         }
     ]);

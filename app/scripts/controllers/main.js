@@ -47,7 +47,7 @@ angular.module('oggiApp.controllers')
             };
 
             $scope.setUserImage = function(){
-                if(typeof($rootScope.user.picture) != 'undefined') {
+                if(typeof($rootScope.user.picture) !== 'undefined') {
                     $scope.picture = $rootScope.user.picture;
                 }
                 else $scope.picture = '../images/default-user-icon-profile.png';
