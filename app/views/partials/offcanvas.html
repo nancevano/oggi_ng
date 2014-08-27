@@ -1,44 +1,44 @@
-<nav class="off-canvas__nav ng-scope">
+<nav class="off-canvas__nav ng-scope" ng-controller="navCtrl as ctrl">
     <div id="user-name-wrapper">
-        <h1 id="user-name">Nance Vanobbergen</h1>
+        <h1 id="user-name">{{ user.firstname }} {{ user.surname }}</h1>
     </div>
     <ul id="navigation">
         <li>
-            <a href="#" class="icon icon-home" ng-click="toggleNav()">Home</a>
+            <a href="#" class="icon icon-home" ng-click="ctrl.toggle()">Home</a>
         </li>
         <li>
-            <a href="#month" class="icon icon-agenda" ng-click="toggleNav()">Agenda</a>
+            <a href="#month" class="icon icon-agenda" ng-click="ctrl.toggle()">Agenda</a>
             <ul>
                 <li>
-                <a href="#month" ng-click="toggleNav()">Per maand</a>
+                <a href="#month" ng-click="ctrl.toggle()">Per maand</a>
                 </li>
                 <li>
-                <a href="#week" ng-click="toggleNav()">Per Week</a>
+                <a href="#week" ng-click="ctrl.toggle()">Per Week</a>
                 </li>
                 <li>
-                <a href="#day" ng-click="toggleNav()">Per dag</a>
+                <a href="#day" ng-click="ctrl.toggle()">Per dag</a>
                 </li>
             </ul>
         </li>
         <li>
-            <a href="" class="icon icon-berichten" ng-click="toggleNav()">Berichten</a>
+            <a href="" class="icon icon-berichten" ng-click="ctrl.toggle()">Berichten</a>
             <ul>
                 <li>
-                <a href="#conversations" ng-click="toggleNav()">Conversaties</a>
+                <a href="#conversations" ng-click="ctrl.toggle()">Conversaties</a>
                 </li>
                 <li>
-                    <a href="" ng-click="toggleNav()">Nieuw Bericht</a>
+                    <a href="" ng-click="ctrl.toggle()">Nieuw Bericht</a>
                 </li>
             </ul>
         </li>
         <li>
-            <a href="" class="icon icon-informatie" ng-click="toggleNav()">Informatie</a>
+            <a href="" class="icon icon-informatie" ng-click="ctrl.toggle()">Informatie</a>
             <ul>
                 <li>
-                    <a href="#schedule" ng-click="toggleNav()">Lessenrooster</a>
+                    <a href="#schedule" ng-click="ctrl.toggle()">Lessenrooster</a>
                 </li>
                 <li>
-                    <a href="#contact" ng-click="toggleNav()">Contact</a>
+                    <a href="#contact" ng-click="ctrl.toggle()">Contact</a>
                 </li>
             </ul>
         </li>

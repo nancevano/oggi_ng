@@ -12,7 +12,8 @@
     "angular-route": "1.2.15",
     "angular-off-canvas":"0.1.0",
     "angular-local-storage":"*",
-    "angular-base64":"2.0.1"
+    "angular-base64":"2.0.1",
+    "ngCordova": "*"
   },
   "devDependencies": {
     "angular-mocks": "1.2.15",

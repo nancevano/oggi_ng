@@ -1,5 +1,5 @@
-<nav id="main-navigation">
-	<div id="offcanvas-toggle" ng-click="toggleNav()">
+<nav id="main-navigation" ng-controller="navCtrl as ctrl">
+	<div id="offcanvas-toggle" ng-click="ctrl.toggle()">
 		<div id="menu-icon" class="pull-left">
 			<div class="bar bar-1"></div>
 			<div class="bar bar-2"></div>

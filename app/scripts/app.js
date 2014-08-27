@@ -2,11 +2,15 @@
 
 angular.module('oggiApp.controllers', []);
 angular.module('oggiApp.services', []);
+angular.module('oggiApp.filters', []);
+angular.module('oggiApp.settings', []);
 
 var app = angular
     .module('oggiApp', [
         'oggiApp.controllers',
         'oggiApp.services',
+        'oggiApp.filters',
+        'oggiApp.settings',
         'ngCookies',
         'ngResource',
         'ngSanitize',
@@ -21,10 +25,7 @@ var app = angular
         $routeProvider
             .when('/app', {
                 templateUrl: 'views/preload.html',
-                controller: 'oggiApp.controllers.AppCtrl',
-                resolve: {
-                    appInitialized: appCtrl.initialize
-                }
+                controller: 'oggiApp.controllers.AppCtrl'
             })
             .when('/', {
                 templateUrl: 'views/main.html',
@@ -70,18 +71,10 @@ var app = angular
             });
     }])
     .run(['$rootScope', '$timeout', '$location', '$window', '$http',
-        function($rootScope, $timeout, $location, $window, $http) {
+        function($rootScope, $timeout, $location, $window) {
             $rootScope.user = null;
             $rootScope.appInitialized = false;
             $rootScope.URLAPI = "http://localhost:8080/oggi_bo/web/app_dev.php/api";
-
-            $rootScope.$on('$routeChangeStart', function(event, next, current) {
-                if (!$rootScope.appInitialized) {
-                    $location.path('/app');
-                } else if ($rootScope.appInitialized && $location.path() === '/app') {
-                    $location.path('/');
-                }
-            })
 
             $rootScope.goBack = function() {
                 setTimeout(function() {
@@ -89,17 +82,13 @@ var app = angular
                 }, 100);
             }
 
-            /*$rootScope.refreshUser = function(){
-                $http({method: 'GET', url: $rootScope.URLAPI + "/user/info"})
-                    .success(function(data, status, headers, config) {
-                        if(data !== null){
-                            $rootScope.user = data;
-                        }
-                    })
-                    .error(function(data, status, headers, config) {
-                        alert(error);
-                    });
-            }*/
+            $rootScope.$on('$routeChangeStart', function(event, next, current) {
+                if (!$rootScope.appInitialized && $rootScope.user === null && $location.path() !== '/login') {
+                    $location.path('/app');
+                } else if($rootScope.appInitialized && $rootScope.user === null && $location.path() !== '/login'){
+
+                }
+            });
         }
     ]);
 
@@ -112,38 +101,23 @@ var app = angular
     * Return the promises
     * Resolve for each route
 */
-var appCtrl = app.controller('oggiApp.controllers.AppCtrl', ['$scope', '$location', 'appInitialized', 'offCanvas',
-    function($scope, $location, appInitialized, $http, $rootScope, localStorageService, offCanvas) {
-        if (appInitialized) {
-            $location.path('/');
-        }
-
+var appCtrl = app.controller('oggiApp.controllers.AppCtrl', ['$rootScope', '$q', '$timeout', '$http', '$location', 'localStorageService', 'oggiApp.services.loginService',
+    function($rootScope, $q, $timeout, $http, $location, localStorageService, loginService) {
+        loginService.inLocalStorage().then(function(inLocalStorage){
+            loginService.checkCredentials(inLocalStorage).then(function(data){
+                if(!!data){
+                    loginService.doLogin(data);
+                    $location.path('/')
+                }
+            }, function(){
+                $location.path('/login');
+            });
+        },function() {
+            $location.path('/login');
+        });
     }
 ]);
 
-appCtrl.initialize = ['$rootScope', '$q', '$timeout', '$http', 'localStorageService',
-    function($rootScope, $q, $timeout, $http, localStorageService) {
-        var deferred = $q.defer();
-
-        if(localStorageService.get('user') !== null){
-            var user = localStorageService.get('user');
-            $http.defaults.headers.common.Authorization = 'Basic ' + user;
-            $http({method: 'GET', url: $rootScope.URLAPI + "/user/credentials"})
-                .success(function(data, status, headers, config) {
-                    if(data !== null){
-                        $rootScope.user = data;
-                        $rootScope.appInitialized = true;
-                        deferred.resolve(true);
-                    }
-                })
-                .error(function(data, status, headers, config) {
-                    deferred.reject(data);
-                });
-        }
-
-        return deferred.promise;
-    }
-];
 appCtrl.getGeoloc = ['$q', 'oggiApp.services.GeolocSrvc', function($q, GeolocSrvc){
     var deferred = $q.defer();
 
@@ -162,13 +136,17 @@ appCtrl.getGeoloc = ['$q', 'oggiApp.services.GeolocSrvc', function($q, GeolocSrv
 /*
  NavCtrl
  =======
- Controller for the App
+ Controller for the Z
  ----------------------
  * Manages offcanvas navigation
  */
-var navCtrl = app.controller('oggiApp.controllers.navCtrl', ['offCanvas', '$rootScope',
-    function(offCanvas, $rootScope) {
-        $rootScope.toggleNav = function() {
+var navCtrl = app.controller('navCtrl', ['offCanvas', '$scope', '$rootScope',
+    function(offCanvas, $scope, $rootScope) {
+        $rootScope.$watch('user', function(){
+            $scope.user = $rootScope.user;
+        }, true);
+
+        this.toggle = function(){
             offCanvas.toggle();
 
             if ($('body').hasClass('is-off-canvas-opened')) {
@@ -185,7 +163,7 @@ var navCtrl = app.controller('oggiApp.controllers.navCtrl', ['offCanvas', '$root
     .factory('offCanvas', ['cnOffCanvas',
         function(cnOffCanvas) {
             return cnOffCanvas({
-                controller: 'oggiApp.controllers.navCtrl',
+                controller: 'navCtrl',
                 controllerAs: 'nav',
                 templateUrl: 'views/partials/offcanvas.html'
             })
