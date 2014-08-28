@@ -1,44 +1,12 @@
 'use strict';
 
 angular.module('oggiApp.controllers')
-    .controller('oggiApp.controllers.DayCtrl', ['$scope', '$http', '$rootScope', '$routeParams',
-        function($scope, $http, $rootScope, $routeParams) {
-            $scope.awesomeThings = [
-                'HTML5 Boilerplate',
-                'AngularJS',
-                'Karma'
-            ];
-
-            $scope.months = [
-                'Januari',
-                'Februari',
-                'Maart',
-                'April',
-                'Mei',
-                'Juni',
-                'Juli',
-                'Augustus',
-                'September',
-                'Oktober',
-                'November',
-                'December'
-            ];
-
-            $scope.daysShort = [
-                'Zo',
-                'MA',
-                'DI',
-                'WO',
-                'DO',
-                'VR',
-                'ZA'
-            ];
+    .controller('oggiApp.controllers.DayCtrl', ['$scope', '$http', '$rootScope', '$routeParams', 'oggiApp.services.apiService', 'calendarData',
+        function($scope, $http, $rootScope, $routeParams, apiService, calendarData) {
 
             $scope.today = typeof($routeParams.date) !== 'undefined' ? new Date($routeParams.date) : new Date();
             $scope.currentDay = $scope.today.getDate();
             $scope.startYear = $scope.today.getMonth() > 8 ? $scope.today.getFullYear() : $scope.today.getFullYear() - 1;
-
-
 
             $scope.previousDay = function(){
                 $scope.today.setDate($scope.today.getDate() - 1);
@@ -64,9 +32,9 @@ angular.module('oggiApp.controllers')
 
             $scope.setDayString = function(){
                 var result = '';
-                result += $scope.daysShort[$scope.today.getDay()];
+                result += calendarData.daysShort[$scope.today.getDay()];
                 result += ' ' + $scope.today.getDate();
-                result += ' ' + $scope.months[$scope.today.getMonth()];
+                result += ' ' + calendarData.months[$scope.today.getMonth()];
                 result += ' ' + $scope.today.getFullYear();
 
                 $scope.currentDay = result;
@@ -77,7 +45,11 @@ angular.module('oggiApp.controllers')
                 $scope.subjectsToday = [];
 
                 var link = $scope.today.getDate() + '/' + ($scope.today.getMonth() + 1) + '/' + $scope.today.getFullYear();
-                $http({method: 'POST', url: $rootScope.URLAPI + '/calendar/' + link, data: {user: $rootScope.user.id}}).
+                apiService.getDaySchedule($scope.today).then(function(schedules){
+                    $scope.subjectsToday = schedules;
+                    console.log(schedules);
+                });
+                /*$http({method: 'POST', url: $rootScope.URLAPI + '/calendar/' + link, data: {user: $rootScope.user.id}}).
                     success(function(data, status) {
                         if(data != null){
                             var courses = $.map(data, function(v, i){
@@ -108,7 +80,7 @@ angular.module('oggiApp.controllers')
                             $scope.errors.push(data.text[i]);
                         }
                     }
-                );
+                );*/
             };
         }
     ]);

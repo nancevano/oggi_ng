@@ -59,12 +59,9 @@ var app = angular
                 templateUrl: 'views/class.html',
                 controller: 'oggiApp.controllers.ClassCtrl'
             })
-            .when('/conversations', {
-                templateUrl: 'views/conversations.html',
-                controller: 'ConversationsCtrl'
-            }).when('/contact', {
-                templateUrl: '../views/contact.html',
-                controller: 'ContactCtrl'
+            .when('/messages', {
+                templateUrl: '../views/messages.html',
+                controller: 'oggiApp.controllers.MessagesCtrl'
             })
             .otherwise({
                 redirectTo: '/'
@@ -80,7 +77,29 @@ var app = angular
                 setTimeout(function() {
                     $window.history.back();
                 }, 100);
-            }
+            };
+
+            //Initialize cache
+            $('body').imagesLoaded(function($images, $proper, $broken ) {
+                // see console output for debug info
+                ImgCache.options.debug = true;
+                ImgCache.options.usePersistentCache = true;
+
+                ImgCache.init(function() {
+                    // 1. cache images
+                    if(typeof $proper !== 'undefined'){
+                        for (var i = 0; i < $proper.length; i++) {
+                            ImgCache.cacheFile($($proper[i]).attr('src'));
+                        }
+                    }
+                    // 2. broken images get replaced
+                    if(typeof $broken !== 'undefined'){
+                    for (var i = 0; i < $broken.length; i++) {
+                        ImgCache.useCachedFile($($broken[i]));
+                    }
+
+                });
+            });
 
             $rootScope.$on('$routeChangeStart', function(event, next, current) {
                 if (!$rootScope.appInitialized && $rootScope.user === null && $location.path() !== '/login') {
@@ -101,8 +120,11 @@ var app = angular
     * Return the promises
     * Resolve for each route
 */
-var appCtrl = app.controller('oggiApp.controllers.AppCtrl', ['$rootScope', '$q', '$timeout', '$http', '$location', 'localStorageService', 'oggiApp.services.loginService',
-    function($rootScope, $q, $timeout, $http, $location, localStorageService, loginService) {
+var appCtrl = app.controller('oggiApp.controllers.AppCtrl', ['$rootScope', '$q', '$timeout', '$http', '$location', 'oggiApp.services.offlineService', 'oggiApp.services.loginService',
+    function($rootScope, $q, $timeout, $http, $location, offlineService, loginService) {
+
+        offlineService.init();
+
         loginService.inLocalStorage().then(function(inLocalStorage){
             loginService.checkCredentials(inLocalStorage).then(function(data){
                 if(!!data){

@@ -1,0 +1,24 @@
+<div id="conversations-wrapper">
+       <div id="view-selection">
+           <h1 id="conversations-title">Berichten</h1>
+       </div>
+        <div id="conversations-page" ng-init="init()">
+            <div class="preloader" style="background-color:#eee;" ng-show="loading"></div>
+            <ul id="conversation-list">
+                <li ng-repeat="message in newReceived">
+                    <div class="conversations-image">
+                        <img id="conversations-user-picture" src="{{ imgUrl }}{{ message.sender.picture }}" class="picture-round-bordered">
+                    </div>
+                    <h5>{{ message.sender.title }}</h5>
+                    <p>{{ message.content|limitTo:60 }}</p>
+                </li>
+                <li ng-repeat="message in received" class="{{ message.isRead }}">
+                    <div class="conversations-image">
+                        <img id="conversations-user-picture" src="{{ imgUrl }}{{ message.sender.picture }}" class="picture-round-bordered">
+                    </div>
+                    <h5>{{ message.sender.title }}</h5>
+                    <p>{{ message.content|limitTo:60 }}</p>
+                </li>
+            </ul>
+        </div>
+</div>

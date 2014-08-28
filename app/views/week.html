@@ -19,10 +19,15 @@
 	<thead>
 		<tr>
             <th></th>
-			<th ng-repeat="days in daysInWeek">{{ days.day }}<span class="month">{{ days.month }}</span></th>
+			<th ng-repeat="days in daysInWeek"><a href="#/day/{{ days.year }}-{{ days.monthIndex }}-{{ days.day }}">{{ days.day }}<span class="month">{{ days.month }}</span></a></th>
 		</tr>
 	</thead>
 	<tbody ng-init="buildWeekSchedule()">
-        {{ weekSchedule }}
+        <tr ng-repeat="(timeslot, day) in weekSchedule">
+            <td>{{ timeslot + 1 }}.</td>
+            <td ng-repeat="schedule in day">
+                {{ schedule.schedule.course|limitTo:3|uppercase }}
+            </td>
+        </tr>
 	</tbody>
 </table>

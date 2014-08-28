@@ -1,28 +1,8 @@
 'use strict';
 
 angular.module('oggiApp.controllers')
-    .controller('oggiApp.controllers.WeekCtrl', ['$scope', '$rootScope', '$http',
-        function($scope, $rootScope, $http) {
-            $scope.awesomeThings = [
-                'HTML5 Boilerplate',
-                'AngularJS',
-                'Karma'
-            ];
-
-            $scope.monthsShort = [
-                'Jan.',
-                'Feb.',
-                'Mrt.',
-                'Apr.',
-                'Mei.',
-                'Jun.',
-                'Jul.',
-                'Aug.',
-                'Sep.',
-                'Okt.',
-                'Nov.',
-                'Dec.'
-            ];
+    .controller('oggiApp.controllers.WeekCtrl', ['$scope', '$rootScope', '$http', 'calendarData', 'oggiApp.services.apiService',
+        function($scope, $rootScope, $http, calendarData, apiService) {
 
             Date.prototype.getWeekNumber = function(){
                 var d = new Date(+this);
@@ -93,38 +73,41 @@ angular.module('oggiApp.controllers')
                         mtd = curr_month;
                     }
 
-                    $scope.daysInWeek.push({day: dtd, month: $scope.monthsShort[mtd]});
+                    $scope.daysInWeek.push({day: dtd, month: calendarData.monthsShort[mtd], monthIndex: (mtd + 1) < 10 ? "0" + (mtd + 1) : (mtd + 1), year:$scope.currentYear});
                 }
             };
 
             $scope.setCurrentMonday = function(cd){
                 var d = typeof(cd) === 'undefined' ? new Date() : cd;
+                $scope.today = d;
+
                 d.setDate(d.getDate() - (d.getDay() + 6) % 7);
                 $scope.currentMonday = d;
             };
 
-            $scope.weekSchedule = '';
             $scope.buildWeekSchedule = function(){
-                $scope.weekSchedule = '';
+                $scope.weekSchedule = [];
                 var url = $rootScope.URLAPI + '/calendar/week/' + $scope.currentWeek + '/' + $scope.currentYear;
-                console.log(url);
 
-                $http({method: 'POST', url: url, data: {user: $rootScope.user.id}}).
-                    success(function(data, status) {
-                        if(data != null){
-                            console.log(data);
-                            $.each(data, function(){
 
-                            });
-                        }
-                    }).
-                    error(function(data, status) {
-                        $scope.errors = [];
-                        for(var i=0; i < data.text.length; i++){
-                            $scope.errors.push(data.text[i]);
+                apiService.getWeekSchedule($scope.today).then(function(days){
+                    for(var i = 0; i < days.length; i++){
+                        var day = days[i];
+
+                        for(var y = 0; y < day.length; y++){
+                            var timeslot = day[y].schedule.timeslot;
+                            var schedule_day = day[y].schedule.day
+
+                            if(typeof $scope.weekSchedule[timeslot - 1] == "undefined"){
+                                $scope.weekSchedule[timeslot - 1] = [];
+                            }
+                            $scope.weekSchedule[timeslot - 1][schedule_day - 1] = day[y];
                         }
                     }
-                );
+
+                    console.log($scope.weekSchedule)
+                });
+
             };
         }
     ]);
